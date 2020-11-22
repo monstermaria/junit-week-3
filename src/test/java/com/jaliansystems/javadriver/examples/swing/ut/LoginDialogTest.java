@@ -5,8 +5,10 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
-import org.junit.After;
+
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,11 +24,12 @@ import static org.junit.Assert.*;
 
 public class LoginDialogTest {
 
-    private LoginDialog login;
-    private WebDriver driver;
+    private static LoginDialog login;
+    private static WebDriver driver;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
+        System.out.println("setUp");
         login = new LoginDialog() {
             private static final long serialVersionUID = 1L;
 
@@ -42,16 +45,24 @@ public class LoginDialogTest {
         driver = new JavaDriver(new JavaProfile());
     }
 
-    @After
-    public void tearDown() throws Exception {
-        if (login != null)
+    @Before
+    public void beforeEach() {
+        login.setVisible(true);
+    }
+
+    @AfterClass
+    public static void tearDown() throws Exception {
+        System.out.println("tearDown");
+        if (login != null) {
             SwingUtilities.invokeAndWait(() -> login.dispose());
+        }
         if (driver != null)
             driver.quit();
     }
 
     @Test
     public void loginSuccess() {
+        System.out.println("loginSuccess");
         WebElement user = driver.findElement(By.cssSelector("text-field"));
         user.sendKeys("bob");
         WebElement pass = driver.findElement(By.cssSelector("password-field"));
@@ -66,6 +77,7 @@ public class LoginDialogTest {
 
     @Test
     public void loginCancel() {
+        System.out.println("loginCancel");
         WebElement cancelBtn = driver.findElement(By.cssSelector("button[text='Cancel']"));
         cancelBtn.click();
         assertFalse(login.isSucceeded());
@@ -73,6 +85,7 @@ public class LoginDialogTest {
 
     @Test
     public void loginInvalid() {
+        System.out.println("loginInvalid");
         WebElement user = driver.findElement(By.cssSelector("text-field"));
         user.sendKeys("bob");
         WebElement pass = driver.findElement(By.cssSelector("password-field"));
@@ -93,6 +106,7 @@ public class LoginDialogTest {
         // Check that all the text components (like text fields, password
         // fields, text areas) are associated
         // with a tooltip
+        System.out.println("checkTooltipText");
         List<WebElement> textComponents = driver.findElements(By.className(JTextComponent.class.getName()));
         for (WebElement tc : textComponents) {
             assertNotEquals(null, tc.getAttribute("toolTipText"));
