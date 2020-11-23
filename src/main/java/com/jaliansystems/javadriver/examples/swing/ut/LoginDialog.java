@@ -35,6 +35,7 @@ public class LoginDialog extends JFrame {
     private JLabel lbPassword;
     private JButton btnLogin;
     private JButton btnCancel;
+    private JButton btnClear;
     private boolean succeeded;
 
     public LoginDialog() {
@@ -131,6 +132,16 @@ public class LoginDialog extends JFrame {
                 enableLoginButton();
             }
         });
+
+        btnClear = new JButton("Clear Credentials");
+        btnClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tfUsername.setText("");
+                pfPassword.setText("");
+            }
+        });
+
         btnCancel = new JButton("Cancel");
         btnCancel.setName("cancel_button");
         btnCancel.addActionListener(new ActionListener() {
@@ -142,6 +153,7 @@ public class LoginDialog extends JFrame {
         });
         JPanel bp = new JPanel();
         bp.add(btnLogin);
+        bp.add(btnClear);
         bp.add(btnCancel);
 
         getContentPane().add(panel, BorderLayout.CENTER);
