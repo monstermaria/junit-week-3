@@ -254,6 +254,26 @@ public class LoginDialogTest {
         assertFalse(login.isSucceeded());
     }
 
+    @Test
+    public void clearCredentials_CredentialsEntered_CredentialsEmpty() {
+        System.out.println("clearCredentials_CredentialsEntered_CredentialsEmpty");
+
+        // arrange
+        WebElement user = driver.findElement(By.cssSelector("text-field"));
+        WebElement pass = driver.findElement(By.cssSelector("password-field"));
+        WebElement clearBtn = driver.findElement(By.cssSelector("button[text='Clear Credentials']"));
+
+        user.sendKeys("bob");
+        pass.sendKeys("wrong");
+
+        // act
+        clearBtn.click();
+
+        // assert
+        assertEquals("", login.getUsername());
+        assertEquals("", login.getPassword());
+    }
+
     /*
     this test is not necessary anymore, as more specific testing of tool tips are made in an other test
      */
