@@ -186,12 +186,12 @@ public class LoginDialog extends JFrame {
     protected void onSuccess() {
         JOptionPane.showMessageDialog(LoginDialog.this, "Hi " + getUsername() + "! You have successfully logged in.",
                 "Login Success", JOptionPane.INFORMATION_MESSAGE);
-        System.exit(0);
+//        System.exit(0);
     }
 
     protected void onCancel() {
         JOptionPane.showMessageDialog(LoginDialog.this, "Sorry to see you going.", "Login Cancel", JOptionPane.INFORMATION_MESSAGE);
-        System.exit(0);
+//        System.exit(0);
     }
 
     protected void onInvalidCredentials() {
