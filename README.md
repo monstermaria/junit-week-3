@@ -1,12 +1,9 @@
 # junit-week-3
 
-## Assignment 1
-https://github.com/monstermaria/junit-week-3/tree/8a3484642cdfde4f2c8fd6f3eb02a19c283300e1
+School assignment in a test course. Example code taken from https://github.com/jalian-systems/javadriver-ut-examples
 
-## Assignment 2
-https://github.com/monstermaria/junit-week-3/tree/61bcd8790d929c23ec801278b49650ec916aa0bd
+Explanation of what it is all about: https://marathontesting.com/blog-posts/unit-testing-swing-apps/
 
-## Bonus assignment
-https://github.com/monstermaria/junit-week-3/blob/61bcd8790d929c23ec801278b49650ec916aa0bd/build.gradle
+The assignment was to improve and expand the existing tests, and also add a new functionality to the example login window.
 
-Version of JUnit is 4.12
+The testing is done with JUnit 4, and the GUI testing is done with Marathon Java Driver/Selenium.
